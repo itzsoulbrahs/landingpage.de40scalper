@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>De40Scalper</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?display=swap&family=Audiowide:ital,wght@0,400;1,400&family=Inter:ital,wght@0,300;0,400;1,300;1,400&family=Lato:ital,wght@0,400;1,400" rel="stylesheet" type="text/css" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+html { font-size: 16pt; }
+body {
+  line-height: 1;
+  min-height: 100vh;
+  min-width: 320px;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  background-color: #E7E7E7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Background pattern - exact from source */
+body::before {
+  content: '';
+  display: block;
+  height: 100vh;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 0;
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20preserveAspectRatio%3D%22none%22%3E%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%20path%20%7B%20fill%3A%20none%3B%20stroke%3A%20rgba(158,158,158,0.231)%3B%20stroke-width%3A%201.01px%3B%20%7D%20%3C%2Fstyle%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M111.2%2C81.7L-33.7%2C226.6c-13.9%2C13.9-36.5%2C13.9-50.5%2C0L-229.1%2C81.7%20c-22.5-22.5-6.6-60.9%2C25.2-60.9H86C117.7%2C20.7%2C133.7%2C59.2%2C111.2%2C81.7z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M366.8%2C338.3L221.9%2C483.2c-13.9%2C13.9-36.5%2C13.9-50.5%2C0L26.6%2C338.3%20c-22.5-22.5-6.6-60.9%2C25.2-60.9h289.8C373.4%2C277.4%2C389.3%2C315.8%2C366.8%2C338.3z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M40.6%2C423l-144.9-144.9c-13.9-13.9-13.9-36.5%2C0-50.5L40.6%2C82.8%20c22.5-22.5%2C60.9-6.6%2C60.9%2C25.2v289.8C101.5%2C429.6%2C63.1%2C445.5%2C40.6%2C423z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M296.3%2C679.7L151.4%2C534.8c-13.9-13.9-13.9-36.5%2C0-50.5l144.9-144.9%20c22.5-22.5%2C60.9-6.6%2C60.9%2C25.2v289.8C357.2%2C686.3%2C318.8%2C702.2%2C296.3%2C679.7z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M623.5%2C81.7L478.6%2C226.6c-13.9%2C13.9-36.5%2C13.9-50.5%2C0L283.2%2C81.7%20c-22.5-22.5-6.6-60.9%2C25.2-60.9h289.8C630%2C20.7%2C646%2C59.2%2C623.5%2C81.7z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M296.3%2C166.4L151.4%2C21.5c-13.9-13.9-13.9-36.5%2C0-50.5l144.9-144.9%20c22.5-22.5%2C60.9-6.6%2C60.9%2C25.2v289.8C357.2%2C173%2C318.8%2C188.9%2C296.3%2C166.4z%22%2F%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M552.9%2C423L408%2C278.2c-13.9-13.9-13.9-36.5%2C0-50.5L552.9%2C82.8%20c22.5-22.5%2C60.9-6.6%2C60.9%2C25.2v289.8C613.8%2C429.6%2C575.4%2C445.5%2C552.9%2C423z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(45deg, #EDEDED 0%, #E0E0E0 60%);
+  background-size: 553px, auto;
+  background-position: center, 0% 0%;
+  background-repeat: repeat, repeat;
+}
+
+.site-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.site-main {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.site-main > .inner {
+  max-width: 100%;
+  position: relative;
+  width: 62rem;
+  z-index: 1;
+  padding: 6rem;
+}
+
+/* TOP container - gradient background with pattern */
+.container-top {
+  display: flex;
+  width: 100%;
+  min-height: 23rem;
+  align-items: center;
+  justify-content: center;
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20preserveAspectRatio%3D%22none%22%3E%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%20path%20%7B%20fill%3A%20none%3B%20stroke%3A%20transparent%3B%20stroke-width%3A%203.01px%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20%7D%20%3C%2Fstyle%3E%20%3Cpath%20vector-effect%3D%22non-scaling-stroke%22%20d%3D%22M416%2C192L256%2C320L96%2C192L256%2C64L416%2C192z%20M96-64L256%2C64L416-64%20M416%2C576V448L256%2C576%20M256%2C576L96%2C448v128%20M512%2C191L512%2C191L352%2C320l160%2C128.3L672%2C320L352%2C64l320-256%20M512%2C191L672%2C64L352-192%20M160-192L-160%2C64l320%2C256L0%2C448.3%20M0%2C448.3%20L-160%2C320L160%2C64l-320-256%20M416%2C448L256%2C320L96%2C448%20M96-64v76.8%20M416-64v76.8%20M352%2C64v76.8%20M160%2C64v76.8%20M96%2C192v76.8%20M416%2C192%20l-0.5%2C76.8%20M352%2C320v76.8%20M160%2C320v76.8%20M160%2C115.2l15.8%2C13%20M352%2C115.2l-16.2%2C13%20M352%2C371.2l-16.2%2C13%20M160%2C371.2l16.2%2C13%20M671.5%2C575.4l-160-128l-160%2C128%20M159.5%2C575.4l-160-128l-160%2C128%22%20%2F%3E%3C%2Fsvg%3E'), linear-gradient(45deg, #D9B2B2 37%, #96A9EB 100%);
+  background-size: 256px, cover;
+  background-position: center, 0% 0%;
+  background-repeat: repeat, repeat;
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+  margin-bottom: 0 !important;
+}
+
+.container-top-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 3.25rem 6rem;
+  width: 100%;
+  max-width: 62rem;
+}
+
+.container-top-inner > .col-logo {
+  width: calc(33% + 1.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-top-inner > .col-text {
+  width: calc(67% - 1.5rem);
+  flex: 1;
+}
+
+/* Logo image - exact style from source */
+.logo-frame {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  width: 100%;
+  border-radius: 100%;
+  border: 5px solid #FFFFFF;
+  max-width: 160px;
+}
+
+.logo-frame img {
+  max-width: 100%;
+  vertical-align: top;
+  width: inherit;
+  display: block;
+}
+
+/* Title - Audiowide font, uppercase */
+.title-text {
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: 'Audiowide', sans-serif;
+  letter-spacing: -0.125rem;
+  width: 100%;
+  font-size: 2.375em;
+  line-height: 1.375;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+/* Description - Inter light */
+.desc-text {
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 1em;
+  line-height: 1.875;
+  font-weight: 300;
+}
+
+/* BOTTOM container - white */
+.container-bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-bottom-left-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  margin-top: 0 !important;
+}
+
+.container-bottom-inner {
+  padding: 0.75rem 4rem 0.75rem 4rem;
+  width: 100%;
+  max-width: 62rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-bottom-inner > * {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.container-bottom-inner > *:first-child { margin-top: 0 !important; }
+.container-bottom-inner > *:last-child { margin-bottom: 0 !important; }
+
+/* Tagline text */
+.tagline-text {
+  text-align: center;
+  color: rgba(20,20,20,0.741);
+  font-family: 'Lato', sans-serif;
+  font-size: 1.25em;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Buttons list */
+.buttons-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.buttons-list:first-child { margin-top: 0 !important; }
+.buttons-list:last-child { margin-bottom: 0 !important; }
+
+/* Telegram button style */
+.btn-telegram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24.875rem;
+  height: 4rem;
+  line-height: 4rem;
+  padding: 0 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  border-radius: 1.875rem;
+  color: #0086BF;
+  border: solid 3px rgba(36,36,36,0.741);
+  background: transparent;
+  text-decoration: none;
+  transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-telegram svg {
+  display: block;
+  fill: #0086BF;
+  flex-shrink: 0;
+  height: 100%;
+  min-width: 16px;
+  pointer-events: none;
+  width: 1.5em;
+  margin-left: -0.125em;
+  margin-right: calc(0.5em);
+  transition: fill 0.25s ease;
+}
+
+.btn-telegram:hover {
+  border-color: #000000 !important;
+  color: #000000 !important;
+  transform: scale(1.06);
+}
+.btn-telegram:hover svg { fill: #000000 !important; }
+
+/* Buy Now button style */
+.btn-buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25.75rem;
+  height: 4.875rem;
+  padding: 0 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  border-radius: 1.875rem;
+  border: 1px solid #FFE500;
+  box-shadow: 0rem 0rem 0.5rem 0rem #8C8C8C;
+  background-color: #363636;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-buy svg {
+  display: block;
+  fill: #FFFFFF;
+  flex-shrink: 0;
+  height: 100%;
+  min-width: 16px;
+  pointer-events: none;
+  width: 1.625em;
+  margin-left: -0.125em;
+  margin-right: 0.75rem;
+  transition: fill 0.25s ease;
+}
+
+.btn-buy:hover {
+  background-color: #363636 !important;
+  transform: scale(1.06);
+}
+
+/* Responsive */
+@media (max-width: 1680px) { html { font-size: 12pt; } }
+@media (max-width: 1280px) { html { font-size: 12pt; } }
+@media (max-width: 980px)  { html { font-size: 10pt; } }
+@media (max-width: 736px) {
+  html { font-size: 12pt; }
+  .site-main > .inner { padding: 2rem 1rem; }
+  .container-top { min-height: 17.25rem; border-radius: 2.5rem 2.5rem 0 0; }
+  .container-top-inner {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+  }
+  .container-top-inner > .col-logo,
+  .container-top-inner > .col-text { width: 100% !important; text-align: center; }
+  .logo-frame { max-width: 6.75rem; }
+  .title-text { font-size: 2em; letter-spacing: -0.109375rem; }
+  .desc-text { font-size: 0.875em; }
+  .tagline-text { font-size: 1em; }
+  .container-bottom-inner { padding: 1.75rem 2rem; }
+  .btn-telegram { font-size: 1.25em; }
+  .btn-buy { font-size: 1.25em; }
+  .buttons-list { margin: 2rem 0; }
+}
+@media (max-width: 360px) {
+  .site-main > .inner { padding: 1.5rem 0.75rem; }
+  .container-top-inner { padding: 1.875rem 1.5rem; }
+  .container-bottom-inner { padding: 1.3125rem 1.5rem; }
+  .title-text { font-size: 2em; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG icon defs (exact icons from source) -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" display="none" width="0" height="0">
+  <symbol id="icon-telegram" viewBox="0 0 40 40">
+    <path d="M2.3,18.6c9.1-4,15.2-6.6,18.2-7.9c8.7-3.6,10.5-4.2,11.7-4.3 c0.3,0,0.8,0.1,1.2,0.4c0.3,0.3,0.4,0.6,0.4,0.9C34,7.9,34,8.4,34,8.9c-0.5,5-2.5,17-3.5,22.5c-0.4,2.3-1.3,3.1-2.1,3.2 c-1.8,0.2-3.2-1.2-5-2.3c-2.8-1.8-4.3-2.9-7-4.7c-3.1-2-1.1-3.2,0.7-5c0.5-0.5,8.5-7.8,8.6-8.4c0-0.1,0-0.4-0.2-0.5 c-0.2-0.2-0.4-0.1-0.7-0.1c-0.3,0.1-4.7,3-13.2,8.7c-1.3,0.9-2.4,1.3-3.4,1.3c-1.1,0-3.3-0.6-4.9-1.1c-2-0.6-3.5-1-3.4-2.1 C0.1,19.7,0.9,19.2,2.3,18.6z"/>
+  </symbol>
+  <symbol id="icon-cart" viewBox="0 0 40 40">
+    <path d="M13,32.1c-0.5-0.5-1.1-0.7-1.9-0.7s-1.4,0.2-1.9,0.7c-0.5,0.5-0.7,1.1-0.7,1.9c0,0.7,0.2,1.4,0.7,1.9 c0.5,0.5,1.1,0.7,1.9,0.7s1.4-0.2,1.9-0.7c0.5-0.5,0.7-1.1,0.7-1.9S13.5,32.6,13,32.1z M31.2,32.1c-0.5-0.5-1-0.7-1.8-0.7 s-1.4,0.2-1.9,0.7c-0.5,0.5-0.7,1.1-0.7,1.9c0,0.7,0.2,1.4,0.7,1.9s1.1,0.7,1.9,0.7s1.4-0.2,1.9-0.7c0.5-0.5,0.7-1.1,0.7-1.9 S31.7,32.6,31.2,32.1z M34.2,9.8c-0.2-0.2-0.5-0.4-0.9-0.4H8.9c0-0.1,0-0.3-0.1-0.5c0-0.3-0.1-0.5-0.1-0.6c0-0.1-0.1-0.3-0.2-0.5 c0-0.2-0.1-0.4-0.2-0.5C8.1,7.1,8,7,7.8,6.9C7.6,6.8,7.4,6.8,7.2,6.8H2c-0.3,0-0.6,0.1-0.9,0.4C0.7,7.6,0.7,7.8,0.7,8.1 c0,0.3,0.1,0.6,0.4,0.9s0.5,0.4,0.9,0.4h4.2l3.5,17.8c0,0.1-0.1,0.3-0.3,0.6c-0.2,0.3-0.3,0.6-0.4,0.8c-0.1,0.2-0.2,0.4-0.3,0.7 c-0.1,0.3-0.2,0.5-0.2,0.6c0,0.3,0.1,0.6,0.4,0.9c0.2,0.2,0.5,0.4,0.9,0.4h20.9c0.3,0,0.6-0.1,0.9-0.4c0.2-0.2,0.4-0.5,0.4-0.9 c0-0.4-0.1-0.6-0.4-0.9c-0.2-0.2-0.5-0.4-0.9-0.4H12.1c0.3-0.6,0.5-1,0.5-1.4c0-0.1-0.1-0.6-0.3-1.5l21.3-2.5c0.3,0,0.6-0.2,0.8-0.4 c0.2-0.2,0.3-0.5,0.3-0.8V10.7C34.7,10.4,34.5,10.1,34.2,9.8z" />
+  </symbol>
+</svg>
+
+<div class="site-wrapper">
+  <div class="site-main" role="main">
+    <div class="inner">
+
+      <!-- TOP section -->
+      <div class="container-top">
+        <div class="container-top-inner">
+          <div class="col-logo">
+            <span class="logo-frame">
+              <img src="https://res.cloudinary.com/ddhmtzdhi/image/upload/v1781007495/2e66b6db-00cb-464d-983c-a4d94c14c213_dm1r5d.jpg" alt="" />
+            </span>
+          </div>
+          <div class="col-text">
+            <h1 class="title-text">De40 Scalper</h1>
+            <p class="desc-text">Automated trading tool designed for DE40, built to support trading activity during London and New York market sessions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM section -->
+      <div class="container-bottom">
+        <div class="container-bottom-inner">
+          <p class="tagline-text">Join 600+ traders — see live results inside</p>
+
+          <ul class="buttons-list">
+            <li>
+              <a href="https://t.me/de40hedge" class="btn-telegram" role="button">
+                <svg aria-label="Telegram"><use xlink:href="#icon-telegram"></use></svg>
+                <span>Telegram</span>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="buttons-list">
+            <li>
+              <a href="https://de40scalper.shop/" class="btn-buy" role="button">
+                <svg aria-label="Cart"><use xlink:href="#icon-cart"></use></svg>
+                <span>Buy Now - $49</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
